@@ -1,0 +1,33 @@
+# Core data processing
+pandas
+numpy
+
+# Machine learning
+scikit-learn
+xgboost
+imbalanced-learn
+
+# Clustering / segmentation
+scipy
+
+# Visualization
+matplotlib
+seaborn
+plotly
+
+# Web app / dashboard
+#flask
+#streamlit
+
+# Notebook support
+jupyter
+notebook
+ipykernel
+
+# Utilities
+python-dotenv
+dill
+PyYAML
+
+# Editable install of this project
+-e .

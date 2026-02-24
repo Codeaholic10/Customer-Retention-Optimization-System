@@ -1,0 +1,78 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+*.pyc
+
+# Virtual environments
+venv/
+env/
+.env/
+.venv/
+ENV/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+*.egg
+.eggs/
+wheels/
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Logs
+logs/
+*.log
+
+# Environment variables
+.env
+.env.*
+
+# Data files (large / sensitive)
+data/*.csv
+data/*.xlsx
+data/*.json
+data/*.parquet
+data/*.pkl
+data/*.pickle
+
+# Model artifacts
+*.pkl
+*.pickle
+*.joblib
+*.h5
+*.model
+artifacts/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDEs / editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# pytest / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# mypy
+.mypy_cache/
+
+# MLflow
+mlruns/
+mlartifacts/
+
+# Streamlit
+.streamlit/secrets.toml
