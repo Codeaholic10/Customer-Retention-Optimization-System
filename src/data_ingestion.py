@@ -172,4 +172,4 @@ class DataIngestion:
                     df[col].dtype,
                 )
             else:
-                logger.info("Dtype check passed: '%s' → %s.", col, df[col].dtype)
+                logger.info("Dtype check passed: '%s' -> %s.", col, df[col].dtype)
