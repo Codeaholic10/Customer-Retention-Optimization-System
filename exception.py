@@ -1,18 +1,34 @@
 import sys
+import types
 
 
-def error_message_detail(error, error_detail: sys):
+def error_message_detail(error: Exception, error_detail: types.ModuleType) -> str:
     """
     Extract detailed error information including file name and line number.
 
-    Args:
-        error: The exception object.
-        error_detail: sys module to access traceback info.
+    Parameters
+    ----------
+    error : Exception
+        The exception object.
+    error_detail : types.ModuleType
+        The ``sys`` module, used to access the current traceback via
+        ``sys.exc_info()``.
 
-    Returns:
-        Formatted error message string.
+    Returns
+    -------
+    str
+        Formatted error message with script name and line number.
+        Falls back gracefully when called outside an active except-block
+        (i.e. when ``sys.exc_info()`` returns ``(None, None, None)``).
     """
     _, _, exc_tb = error_detail.exc_info()
+
+    if exc_tb is None:
+        # Called outside an active exception context – best-effort message
+        return (
+            "Error (no traceback available): [{0}]".format(str(error))
+        )
+
     file_name = exc_tb.tb_frame.f_code.co_filename
     line_number = exc_tb.tb_lineno
 
@@ -27,22 +43,32 @@ def error_message_detail(error, error_detail: sys):
 
 class CustomException(Exception):
     """
-    Custom exception class that provides detailed error information,
-    including the script name and line number where the error occurred.
+    Custom exception that enriches the error message with the source file
+    path and line number where the exception originally occurred.
+
+    Usage
+    -----
+    .. code-block:: python
+
+        try:
+            ...
+        except Exception as exc:
+            raise CustomException(exc, sys) from exc
     """
 
-    def __init__(self, error_message, error_detail: sys):
+    def __init__(self, error_message: Exception, error_detail: types.ModuleType) -> None:
         """
-        Initialize CustomException.
-
-        Args:
-            error_message: The error message or original exception.
-            error_detail: sys module to extract traceback details.
+        Parameters
+        ----------
+        error_message : Exception
+            The original exception (or a plain string message).
+        error_detail : types.ModuleType
+            Pass the ``sys`` module so the traceback can be captured.
         """
         super().__init__(error_message)
-        self.error_message = error_message_detail(
+        self.error_message: str = error_message_detail(
             error_message, error_detail=error_detail
         )
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.error_message

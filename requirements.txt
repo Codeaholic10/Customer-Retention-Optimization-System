@@ -27,6 +27,7 @@ ipykernel
 # Utilities
 python-dotenv
 dill
+joblib
 PyYAML
 
 # Editable install of this project
