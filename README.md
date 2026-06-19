@@ -12,8 +12,7 @@ Build an end-to-end ML system using the Telco Customer Churn dataset that:
 2. Trains a global churn prediction model.
 3. Trains separate churn models per segment.
 4. Implements a profit-aware targeting engine that ranks customers based on expected retention value under budget constraints.
-5. Exposes functionality via FastAPI endpoints.
-6. Is modular, clean, and production-structured.
+5. Is modular, clean, and production-structured.
 
 ## Why This Project Matters
 
